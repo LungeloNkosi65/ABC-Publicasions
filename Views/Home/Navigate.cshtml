@@ -1,0 +1,48 @@
+﻿@model ABC_Publicasions.Models.GenericMap
+
+@{
+    ViewBag.Title = "Navigate";
+}
+
+<h2>Navigate</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+
+    <div>
+        @if (Model.Navigation != null)
+        {
+            foreach (var item in Model.Navigation)
+            {
+                <p>@Html.ActionLink(item.text, "Navigate", new { key = item.section })</p>
+            }
+
+            foreach (var item in Model.content)
+            {
+                <p>@Html.DisplayFor(x => item)</p>
+            }
+        }
+        else
+        {
+            <p>No Content</p>
+            <p>@Html.ActionLink("Go back", "Navigate", new { key = "" })</p>
+        }
+
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

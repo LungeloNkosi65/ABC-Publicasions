@@ -1,0 +1,24 @@
+﻿@model  ABC_Publicasions.Models.Root_
+@using ABC_Publicasions.Services;
+
+@{ 
+    var jsonDeserialiserService = new JsonDeserialiserService();
+    var prefared = jsonDeserialiserService.DeserialiseJson();
+    var subsection = jsonDeserialiserService.GetDataFromDictionery(prefared.DictContent, prefared.Preface.navigation[0].section);
+}
+
+<br />
+
+<h2>Display Text</h2>
+<h1>@Html.DisplayText(prefared.Preface.title.ToString())</h1>
+
+<h2>sigdsiodsd</h2>
+<table class="table">
+
+    @foreach (var item in Model.Preface.navigation)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.text)
+        </td>
+    }
+</table>
